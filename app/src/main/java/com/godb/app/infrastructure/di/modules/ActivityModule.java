@@ -2,7 +2,7 @@ package com.godb.app.infrastructure.di.modules;
 
 import android.app.Activity;
 import android.content.Context;
-import com.godb.app.infrastructure.di.ActivityContext;
+import com.godb.app.infrastructure.di.scopes.ActivityContext;
 import dagger.Module;
 import dagger.Provides;
 

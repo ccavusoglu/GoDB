@@ -37,9 +37,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
 
     public void loadRibots() {
         checkViewAttached();
-        mSubscription = mDataManager.getAnnouncements()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+        mSubscription = mDataManager.getAnnouncements("")
                 .subscribe(new Subscriber<List<Announcement>>() {
                     @Override
                     public void onCompleted() {
