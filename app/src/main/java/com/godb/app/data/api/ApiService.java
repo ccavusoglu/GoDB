@@ -1,4 +1,4 @@
-package com.godb.app.domain.api;
+package com.godb.app.data.api;
 
 import com.godb.app.presentation.models.Announcement;
 import retrofit2.http.GET;

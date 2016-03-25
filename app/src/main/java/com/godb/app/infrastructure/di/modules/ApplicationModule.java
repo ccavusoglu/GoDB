@@ -2,7 +2,6 @@ package com.godb.app.infrastructure.di.modules;
 
 import android.app.Application;
 import android.content.Context;
-import com.godb.app.domain.DataManager;
 import com.godb.app.infrastructure.di.scopes.ApplicationContext;
 import dagger.Module;
 import dagger.Provides;
@@ -21,11 +20,6 @@ public class ApplicationModule {
     @Provides
     Application provideApplication() {
         return mApplication;
-    }
-
-    @Provides
-    DataManager provideDataManager() {
-        return new DataManager();
     }
 
     @Provides

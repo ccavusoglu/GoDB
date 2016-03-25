@@ -1,4 +1,4 @@
-package com.godb.app.domain.api;
+package com.godb.app.data.api;
 
 import retrofit2.Retrofit;
 

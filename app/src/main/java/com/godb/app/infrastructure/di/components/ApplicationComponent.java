@@ -1,5 +1,7 @@
 package com.godb.app.infrastructure.di.components;
 
+import com.godb.app.data.DataManager;
+import com.godb.app.data.local.PreferencesHelper;
 import com.godb.app.infrastructure.di.modules.ApplicationModule;
 import dagger.Component;
 
@@ -11,5 +13,7 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
+    DataManager dataManager();
 
+    PreferencesHelper preferencesHelper();
 }

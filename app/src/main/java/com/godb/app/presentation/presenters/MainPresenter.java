@@ -1,12 +1,10 @@
 package com.godb.app.presentation.presenters;
 
-import com.godb.app.domain.DataManager;
+import com.godb.app.data.DataManager;
 import com.godb.app.presentation.models.Announcement;
 import com.godb.app.ui.views.MainMvpView;
 import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 import javax.inject.Inject;

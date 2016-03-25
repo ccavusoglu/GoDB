@@ -1,7 +1,7 @@
 package com.godb.app.infrastructure.di.components;
 
-import com.godb.app.infrastructure.di.scopes.PerActivity;
 import com.godb.app.infrastructure.di.modules.ActivityModule;
+import com.godb.app.infrastructure.di.scopes.PerActivity;
 import com.godb.app.ui.activities.MainActivity;
 import dagger.Component;
 

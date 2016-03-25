@@ -14,6 +14,10 @@ import timber.log.Timber;
 public class GoDBApplication extends Application {
     ApplicationComponent mApplicationComponent;
 
+    public static GoDBApplication get(Context context) {
+        return (GoDBApplication) context.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,10 +26,6 @@ public class GoDBApplication extends Application {
             Timber.plant(new Timber.DebugTree());
             //Fabric.with(this, new Crashlytics());
         }
-    }
-
-    public static GoDBApplication get(Context context) {
-        return (GoDBApplication) context.getApplicationContext();
     }
 
     public ApplicationComponent getComponent() {
