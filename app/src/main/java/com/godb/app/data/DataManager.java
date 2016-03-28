@@ -5,11 +5,10 @@ import com.godb.app.data.api.ServiceFactory;
 import com.godb.app.data.local.PreferencesHelper;
 import com.godb.app.presentation.models.Announcement;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,8 +28,9 @@ public class DataManager {
         if (apiService == null)
             apiService = ServiceFactory.createService(ApiService.class, ApiService.SERVICE_ENDPOINT);
 
-        return apiService.getAnnouncements(s)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return Observable.just(Arrays.asList(Announcement.CREATOR.newArray(2)));
+//                apiService.getAnnouncements(s)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
     }
 }

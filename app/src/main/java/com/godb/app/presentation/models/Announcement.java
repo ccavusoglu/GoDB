@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 public class Announcement implements Parcelable {
     protected Announcement(Parcel in) {
+
     }
 
     public static final Creator<Announcement> CREATOR = new Creator<Announcement>() {

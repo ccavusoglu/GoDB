@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Q on 23.03.2016.
  */
 public interface ApiService {
-    String SERVICE_ENDPOINT = "https://localhost/api";
+    String SERVICE_ENDPOINT = "https://localhost/api/";
 
     @GET("/users/{path}")
     Observable<List<Announcement>> getAnnouncements(@Path("announcements") String path);

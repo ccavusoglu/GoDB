@@ -33,7 +33,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
         if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    public void loadRibots() {
+    public void loadAnnouncements() {
         checkViewAttached();
         mSubscription = mDataManager.getAnnouncements("")
                 .subscribe(new Subscriber<List<Announcement>>() {

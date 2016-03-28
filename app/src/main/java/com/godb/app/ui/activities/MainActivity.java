@@ -20,20 +20,20 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     AnnouncementsAdapter mAnnouncementAdapter;
 
-    @Bind(R.id.recycler_view)
+    @Bind(R.id.main_recycler_view)
     RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
-        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         mRecyclerView.setAdapter(mAnnouncementAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMainPresenter.attachView(this);
-        mMainPresenter.loadRibots();
+        mMainPresenter.loadAnnouncements();
     }
 
     @Override
