@@ -1,5 +1,7 @@
 package com.godb.app.ui.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -20,15 +22,21 @@ import com.godb.app.infrastructure.di.components.DaggerActivityComponent;
 import com.godb.app.infrastructure.di.modules.ActivityModule;
 import com.godb.app.ui.fragments.EventsFragment;
 import com.godb.app.ui.fragments.LoginFragment;
+import com.godb.app.utils.Utils;
 
 /**
  * Created by ccavusoglu on 23.03.2016.
  */
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EventsFragment.OnFragmentInteractionListener {
+    private static final int ANIM_DURATION_TOOLBAR = 300;
+
     private ActivityComponent mActivityComponent;
+
+    protected boolean mPendingIntroAnimation;
 
     @Bind(R.id.app_bar)
     Toolbar mToolbar;
+    private MenuItem mLoginItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +81,36 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mLoginItem = menu.findItem(R.id.action_login);
+
+        if (mPendingIntroAnimation) {
+            mPendingIntroAnimation = false;
+            startIntroAnimation();
+        }
+
         return true;
+    }
+
+    private void startIntroAnimation() {
+        int actionbarSize = Utils.dpToPx(56);
+        mToolbar.setTranslationY(-actionbarSize);
+//        mLoginItem.getActionView().setTranslationY(-actionbarSize);
+
+        mToolbar.animate()
+                .translationY(0)
+                .setDuration(ANIM_DURATION_TOOLBAR)
+                .setStartDelay(300);
+//        mLoginItem.getActionView().animate()
+//                .translationY(0)
+//                .setDuration(ANIM_DURATION_TOOLBAR)
+//                .setStartDelay(400)
+//                .setListener(new AnimatorListenerAdapter() {
+//                    @Override
+//                    public void onAnimationEnd(Animator animation) {
+//                        startContentAnimation();
+//                    }
+//                })
+//                .start();
     }
 
     @Override
@@ -81,9 +118,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.action_login:
                 bringLoginFragment();
-                return true;
-            case R.id.action_settings:
-                bringSettingsFragment();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

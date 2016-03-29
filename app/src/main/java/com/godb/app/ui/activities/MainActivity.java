@@ -11,7 +11,6 @@ import com.godb.app.ui.adapters.AnnouncementsAdapter;
 import com.godb.app.ui.views.MainMvpView;
 
 import javax.inject.Inject;
-import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
@@ -29,6 +28,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         getActivityComponent().inject(this);
 
+        if (savedInstanceState == null) {
+            mPendingIntroAnimation = true;
+        }
+
         mRecyclerView.setAdapter(mAnnouncementAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMainPresenter.attachView(this);
@@ -44,10 +47,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     /*****
      * MVP View methods implementation
-     *****/
+     ****
+     * @param announcements*/
 
     @Override
-    public void showAnnouncements(List<Announcement> announcements) {
+    public void showAnnouncements(Announcement announcements) {
 
     }
 

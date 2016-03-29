@@ -3,6 +3,7 @@ package com.godb.app.presentation.presenters;
 import com.godb.app.data.DataManager;
 import com.godb.app.presentation.models.Announcement;
 import com.godb.app.ui.views.MainMvpView;
+import hugo.weaving.DebugLog;
 import rx.Subscriber;
 import rx.Subscription;
 import timber.log.Timber;
@@ -33,10 +34,11 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
         if (mSubscription != null) mSubscription.unsubscribe();
     }
 
+    @DebugLog
     public void loadAnnouncements() {
         checkViewAttached();
         mSubscription = mDataManager.getAnnouncements("")
-                .subscribe(new Subscriber<List<Announcement>>() {
+                .subscribe(new Subscriber<Announcement>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -47,8 +49,8 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
                     }
 
                     @Override
-                    public void onNext(List<Announcement> announcements) {
-                        if (announcements.isEmpty()) {
+                    public void onNext(Announcement announcements) {
+                        if (announcements != null) {
                             getMvpView().showAnnouncements(announcements);
                         } else {
                             getMvpView().showAnnouncements(announcements);

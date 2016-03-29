@@ -9,7 +9,6 @@ import rx.Observable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by ccavusoglu on 23.03.2016.
@@ -24,11 +23,11 @@ public class DataManager {
         this.preferencesHelper = preferencesHelper;
     }
 
-    public Observable<List<Announcement>> getAnnouncements(String s) {
+    public Observable<Announcement> getAnnouncements(String s) {
         if (apiService == null)
             apiService = ServiceFactory.createService(ApiService.class, ApiService.SERVICE_ENDPOINT);
 
-        return Observable.just(Arrays.asList(Announcement.CREATOR.newArray(2)));
+        return Observable.from(Arrays.asList(Announcement.CREATOR.newArray(2)));
 //                apiService.getAnnouncements(s)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread());
