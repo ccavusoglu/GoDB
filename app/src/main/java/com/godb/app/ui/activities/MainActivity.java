@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import com.example.godb.app.R;
 import com.godb.app.presentation.models.Announcement;
 import com.godb.app.presentation.presenters.MainPresenter;
@@ -25,10 +24,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         getActivityComponent().inject(this);
-        ButterKnife.bind(this);
 
         mRecyclerView.setAdapter(mAnnouncementAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -51,4 +50,5 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     public void showAnnouncements(List<Announcement> announcements) {
 
     }
+
 }
